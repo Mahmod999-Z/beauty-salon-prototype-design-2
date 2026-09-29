@@ -1,0 +1,10 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "design2-preview",
+      "url": "http://localhost:4100",
+      "port": 4100
+    }
+  ]
+}
