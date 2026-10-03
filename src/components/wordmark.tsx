@@ -3,9 +3,11 @@ import { salon } from "@/lib/salon";
 export function Wordmark({
   className,
   tone = "ink",
+  wipe = false,
 }: {
   className?: string;
   tone?: "ink" | "paper";
+  wipe?: boolean;
 }) {
   const text = tone === "paper" ? "text-paper" : "text-ink";
   const [firstWord, ...rest] = salon.name.split(" ");
@@ -14,9 +16,10 @@ export function Wordmark({
   return (
     <span
       className={`group inline-flex items-center gap-2.5 ${className ?? ""}`}
+      data-cursor="pole"
     >
-      <BarberPoleMark className="h-7 w-[9px] shrink-0" />
-      <span className="inline-flex flex-col leading-none">
+      <BarberPoleMark className="h-7 w-[11px] shrink-0" />
+      <span className={`inline-flex flex-col leading-none ${wipe ? "wordmark-wipe" : ""}`}>
         <span
           className={`font-display text-[0.92rem] leading-none font-bold tracking-[0.1em] uppercase ${text}`}
         >
@@ -36,9 +39,12 @@ export function BarberPoleMark({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={`pole-mark relative block overflow-hidden rounded-full bg-ink ring-1 ring-inset ring-white/10 ${className ?? ""}`}
+      className={`pole-mark ring-1 ring-white/10 ring-inset ${className ?? ""}`}
     >
-      <span className="pole-stripes absolute inset-[1.5px] rounded-full" />
+      <span className="pole-stripes" />
+      <span className="pole-shade" />
+      <span className="pole-cap pole-cap-top" />
+      <span className="pole-cap pole-cap-bottom" />
     </span>
   );
 }

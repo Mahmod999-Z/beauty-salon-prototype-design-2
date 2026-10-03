@@ -34,7 +34,7 @@ export function Reviews() {
           <ul className="mt-14 grid gap-px sm:grid-cols-3 sm:bg-paper/15">
             {salon.reviews.map((review, index) => (
               <li
-                key={review.author}
+                key={review.quote}
                 className={`card-lift reveal reveal-d${index + 1} border-t border-paper/20 bg-ink pt-6 sm:border-t-0 sm:px-6 sm:pt-0 sm:first:pl-0`}
               >
                 <blockquote className="font-display text-lg leading-snug font-medium tracking-tight text-paper sm:text-xl">

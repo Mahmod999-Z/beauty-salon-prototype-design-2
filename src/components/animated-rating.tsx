@@ -45,7 +45,7 @@ export function AnimatedRating({ value }: { value: number }) {
   return (
     <p
       ref={ref}
-      className="font-display text-[clamp(3.5rem,12vw,8rem)] leading-[0.82] font-bold tracking-[-0.05em] tabular-nums"
+      className="font-serif text-[clamp(3.5rem,12vw,8rem)] leading-[0.82] font-semibold tracking-[-0.03em] tabular-nums"
     >
       {display.toFixed(1).replace(".", ",")}
     </p>

@@ -31,7 +31,9 @@ export function Hours() {
                   {sunday.day}
                   <TodayMarker day={sunday.day} />
                 </span>
-                <span className="tabular-nums">{sunday.time}</span>
+                <span className="font-serif font-semibold tabular-nums">
+                  {sunday.time}
+                </span>
               </p>
             </div>
           ) : null}
@@ -47,7 +49,14 @@ export function Hours() {
                   {slot.day}
                   <TodayMarker day={slot.day} />
                 </span>
-                <span className="row-glow-price tabular-nums">{slot.time}</span>
+                {/* The serif is a figures-only subset — words stay in the UI face. */}
+                <span
+                  className={`row-glow-price tabular-nums ${
+                    slot.closed ? "text-base" : "font-serif font-semibold"
+                  }`}
+                >
+                  {slot.time}
+                </span>
               </li>
             ))}
           </ul>

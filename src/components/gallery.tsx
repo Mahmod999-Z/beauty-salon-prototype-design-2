@@ -21,13 +21,14 @@ const photos = [
 
 export function Gallery() {
   return (
-    <section className="bg-paper">
+    <section className="section-stack bg-paper">
       <div className="px-6 py-14 sm:px-10 sm:py-20 lg:px-20 lg:py-24">
         <ul className="grid gap-4 sm:grid-cols-3">
           {photos.map((photo, index) => (
             <li
               key={photo.src}
-              className={`card-lift reveal reveal-d${index + 1} group relative aspect-[4/5] overflow-hidden bg-ink`}
+              data-cursor="media"
+              className={`card-lift reveal reveal-d${index + 1} group relative aspect-4/5 overflow-hidden bg-ink`}
             >
               <Image
                 src={photo.src}

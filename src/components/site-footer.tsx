@@ -22,7 +22,7 @@ export function SiteFooter() {
       />
       <div className="reveal flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
         <div>
-          <a href="#inhoud" aria-label={`${salon.name}, naar boven`}>
+          <a href="#inhoud" aria-label={`${salon.name}, naar boven`} data-cursor="pole">
             <Wordmark className="origin-left scale-125" />
           </a>
           <p className="mt-6 max-w-2xs text-sm leading-relaxed text-ink/60">
@@ -81,7 +81,10 @@ export function SiteFooter() {
         <p className="font-display text-sm font-semibold tracking-tight text-ink/60">
           Een Xbuilt Studio conceptontwerp — geen bestaande salon.
           <span className="mt-1 block font-sans text-xs font-normal text-ink/40">
-            Van concept tot livegang in dagen, niet maanden.
+            Van concept tot livegang in dagen, niet maanden. Druk op{" "}
+            <kbd className="font-display font-semibold text-ink/60">X</kbd>{" "}
+            <kbd className="font-display font-semibold text-ink/60">B</kbd> voor
+            de gemeten bouwcijfers.
           </span>
         </p>
         <a

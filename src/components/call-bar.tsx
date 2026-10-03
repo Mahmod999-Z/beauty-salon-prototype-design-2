@@ -14,6 +14,7 @@ export function CallBar() {
         </p>
         <a
           href={`tel:${salon.phoneTel}`}
+          data-cursor="link"
           className="callbar-pulse inline-flex min-h-11 flex-1 items-center justify-center bg-paper px-4 font-display text-sm font-bold tracking-tight text-ink"
         >
           Bel {salon.phoneDisplay}

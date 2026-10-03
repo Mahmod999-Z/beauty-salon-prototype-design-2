@@ -9,9 +9,9 @@ const trust = [
 
 export function Hygiene() {
   return (
-    <section id="hygiene" className="scroll-mt-20 bg-paper">
+    <section id="hygiene" className="scroll-mt-20 bg-porcelain">
       <div className="px-6 sm:px-10 lg:px-20">
-        <div className="reveal flex gap-5 border-t border-ink/15 py-10 sm:gap-7 sm:py-12">
+        <div className="reveal flex gap-5 py-10 sm:gap-7 sm:py-12">
           <BarberPoleMark className="h-24 w-2 shrink-0 sm:h-28" />
           <div>
             <h2 className="font-display text-[clamp(1.5rem,3vw,2.15rem)] leading-tight font-bold tracking-[-0.03em]">

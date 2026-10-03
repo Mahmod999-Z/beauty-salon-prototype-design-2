@@ -59,9 +59,10 @@ export function SiteHeader() {
       }`}
     >
       <div className="flex items-center justify-between gap-4 px-5 sm:px-10 lg:px-20">
-        <a href="#inhoud" aria-label={`${salon.name}, naar boven`}>
+        <a href="#inhoud" aria-label={`${salon.name}, naar boven`} data-cursor="pole">
           <Wordmark
             tone="paper"
+            wipe
             className={`origin-left transition-transform duration-300 ${scrolled ? "scale-90" : ""}`}
           />
         </a>
@@ -72,6 +73,7 @@ export function SiteHeader() {
                 <a
                   href={link.href}
                   aria-current={activeHref === link.href ? "true" : undefined}
+                  data-cursor="link"
                   className={`link-sweep font-sans text-sm font-medium hover:text-paper ${
                     activeHref === link.href
                       ? "is-active text-paper"
@@ -99,7 +101,8 @@ export function SiteHeader() {
           ) : null}
           <a
             href={`tel:${salon.phoneTel}`}
-            className="inline-flex min-h-9 items-center bg-paper px-3.5 font-display text-sm font-bold tracking-tight text-ink transition-colors hover:bg-stripe hover:text-paper sm:px-4"
+            data-cursor="link"
+            className="inline-flex min-h-9 items-center bg-paper px-3.5 font-display text-sm font-bold tracking-tight text-ink shadow-e1 transition-colors hover:bg-stripe hover:text-paper sm:px-4"
           >
             Bel nu
           </a>

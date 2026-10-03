@@ -1,5 +1,6 @@
 import { CopyValue } from "@/components/copy-value";
 import { MagneticLink } from "@/components/magnetic-link";
+import { MapEmbed } from "@/components/map-embed";
 import { salon } from "@/lib/salon";
 
 const whatsappHref = `https://wa.me/${salon.phoneTel.replace("+", "")}?text=${encodeURIComponent(
@@ -12,7 +13,7 @@ const mapsQuery = encodeURIComponent(
 
 export function Contact() {
   return (
-    <section id="contact" className="scroll-mt-20 bg-paper">
+    <section id="contact" className="scroll-mt-20 bg-porcelain">
       <div className="grid gap-10 px-6 py-20 sm:px-10 sm:py-28 lg:grid-cols-2 lg:gap-16 lg:px-20 lg:py-32">
         <div className="reveal">
           <p className="font-display text-xs font-bold tracking-[0.22em] text-stripe uppercase">
@@ -28,7 +29,8 @@ export function Contact() {
             href={whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="mt-6 inline-flex min-h-11 items-center gap-2 border border-ink/20 px-5 font-display text-sm font-bold tracking-tight text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper"
+            data-cursor="link"
+            className="mt-6 inline-flex min-h-11 items-center gap-2 border border-ink/20 bg-paper px-5 font-display text-sm font-bold tracking-tight text-ink shadow-e1 transition-colors hover:border-ink hover:bg-ink hover:text-paper"
           >
             <svg
               aria-hidden="true"
@@ -80,14 +82,8 @@ export function Contact() {
             </span>
           </a>
 
-          <div className="reveal reveal-d2 mt-8 h-64 overflow-hidden border border-ink/15 sm:h-72">
-            <iframe
-              title={`Kaart naar ${salon.name}`}
-              src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
-              className="map-dark h-full w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div className="reveal reveal-d2 mt-8 h-64 overflow-hidden border border-ink/15 shadow-e2 sm:h-72">
+            <MapEmbed />
           </div>
         </div>
       </div>

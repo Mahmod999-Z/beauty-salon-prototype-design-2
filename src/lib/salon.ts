@@ -41,6 +41,18 @@ export const salon = {
     { day: "Zaterdag", time: "09:00–16:00", closed: false, sunday: false },
     { day: "Zondag", time: "12:00–16:00", closed: false, sunday: true },
   ],
+  // Illustrative only — a placeholder shape for the real thing. In a live build
+  // this comes from the client's own booking or footfall data. One entry per
+  // open hour, starting at that day's opening time.
+  busyness: [
+    { day: "Maandag", levels: [] },
+    { day: "Dinsdag", levels: [0.22, 0.3, 0.46, 0.58, 0.44, 0.38, 0.52, 0.78, 0.92] },
+    { day: "Woensdag", levels: [0.3, 0.42, 0.55, 0.6, 0.5, 0.44, 0.62, 0.85, 0.95] },
+    { day: "Donderdag", levels: [0.26, 0.34, 0.48, 0.56, 0.46, 0.4, 0.58, 0.8, 0.9] },
+    { day: "Vrijdag", levels: [0.35, 0.5, 0.66, 0.72, 0.6, 0.55, 0.74, 0.95, 1] },
+    { day: "Zaterdag", levels: [0.6, 0.82, 0.95, 1, 0.92, 0.74, 0.58] },
+    { day: "Zondag", levels: [0.52, 0.7, 0.62, 0.4] },
+  ],
   rating: { score: "4,8", scoreValue: "4.8", count: 187, source: "Google" },
   reviews: [
     {
@@ -59,6 +71,11 @@ export const salon = {
     },
   ],
 } as const;
+
+export function whatsappHref(message: string): string {
+  const number = salon.phoneTel.replace(/\D/g, "");
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+}
 
 export function parseEuroPrice(price: string): number {
   return Number(price.replace("€", "").replace(",", "."));
