@@ -1,3 +1,4 @@
+import { CompareSlider } from "@/components/compare-slider";
 import Image from "next/image";
 import { salon } from "@/lib/salon";
 
@@ -46,6 +47,36 @@ export function Gallery() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-14 grid gap-8 lg:mt-20 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-center lg:gap-14">
+          <figure className="reveal overflow-hidden shadow-e2">
+            <CompareSlider
+              before="/media/style-short.jpg"
+              after="/media/style-long.jpg"
+              beforeLabel="Kort"
+              afterLabel="Langer"
+              alt="Twee haarlengtes naast elkaar"
+            />
+          </figure>
+
+          <div className="reveal reveal-d1">
+            <p className="font-display text-xs font-bold tracking-[0.22em] text-stripe uppercase">
+              Lengte kiezen
+            </p>
+            <h2 className="mt-3 font-display text-[clamp(1.8rem,4.4vw,3rem)] leading-[0.95] font-bold tracking-[-0.04em]">
+              Kort of wat langer?
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-ink/75">
+              Sleep de greep om twee lengtes naast elkaar te zien. Niet zeker
+              wat bij je past? Loop binnen — we kijken samen naar de vorm van je
+              gezicht en de val van je haar.
+            </p>
+            <p className="mt-5 max-w-md font-sans text-[0.68rem] leading-relaxed text-ink/45">
+              Voorbeeldfoto&apos;s van twee verschillende modellen, puur ter
+              illustratie van lengte. Dit is geen voor-en-na van één klant.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

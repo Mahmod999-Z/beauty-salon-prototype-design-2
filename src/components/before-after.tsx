@@ -1,5 +1,3 @@
-import { CompareSlider } from "@/components/compare-slider";
-
 const before = [
   "Kleine, gecentreerde hero-tekst",
   "Prijzen verstopt achter een klik",
@@ -53,24 +51,7 @@ export function BeforeAfter() {
           </h2>
         </div>
 
-        <figure className="reveal mt-12">
-          <div className="overflow-hidden border border-ink/10 shadow-e2">
-            <CompareSlider
-              before="/media/grade-before.jpg"
-              after="/media/grade-after.jpg"
-              beforeLabel="Ruw"
-              afterLabel="Gegradeerd"
-              alt="Hetzelfde filmbeeld, ruw en na kleurbewerking"
-            />
-          </div>
-          <figcaption className="mt-3 max-w-xl font-sans text-sm leading-relaxed text-ink/60">
-            Hetzelfde beeld, hetzelfde moment. Links zoals het uit de camera
-            komt, rechts na onze kleurbewerking naar de huisstijl. Sleep de
-            greep om te vergelijken.
-          </figcaption>
-        </figure>
-
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 sm:gap-6">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 sm:gap-6">
           <div className="reveal reveal-d1 border border-ink/12 p-6 sm:p-8">
             <p className="font-display text-xs font-bold tracking-[0.18em] text-ink/40 uppercase">
               Standaard sjabloon

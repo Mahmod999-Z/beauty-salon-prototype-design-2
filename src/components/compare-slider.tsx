@@ -20,7 +20,7 @@ export function CompareSlider({
 
   return (
     <div
-      className="compare aspect-16/9 w-full bg-ink"
+      className="compare aspect-4/5 w-full bg-ink"
       style={{ "--pos": `${pos}%` } as CSSProperties}
       data-cursor="media"
     >

@@ -11,7 +11,7 @@ A single-route (`/`) Next.js site: a video hero that stays pinned and scales
 away as you scroll, a signature price menu with per-service WhatsApp deep
 links, an illustrative busy-times meter, a reviews band with a live count-up
 rating, a photo gallery, opening hours with a live open/closed indicator, a
-hygiene/trust strip, a drag-to-compare grade demo, and a contact section with
+hygiene/trust strip, a drag-to-compare hair-length chooser, and a contact section with
 a map, click-to-copy details, and a WhatsApp link.
 
 Two things run globally and are worth knowing about before you edit anything:
@@ -101,8 +101,10 @@ Server components except where interactivity requires a client boundary:
   magnitude and the bars stay deliberately grey; only "now" takes pole blue.
   Reads the clock through `useSyncExternalStore`, so there is no hydration
   mismatch and no setState-in-effect.
-- `src/components/compare-slider.tsx` — drag-to-compare. A real `input[type=range]`
-  carries keyboard, touch and screen-reader behaviour; the visible handle is paint.
+- `src/components/compare-slider.tsx` — drag-to-compare, used by the gallery's
+  hair-length chooser. A real `input[type=range]` carries keyboard, touch and
+  screen-reader behaviour; the visible handle is paint. Read the honesty note
+  under **Media** before repurposing this as a before/after.
 - `src/components/reviews.tsx` / `animated-rating.tsx` — count-up and star-fill
   driven by `salon.rating`.
 - `src/components/hours.tsx` / `today-marker.tsx` — the opening-hours grid.
@@ -163,10 +165,27 @@ The hero ships as four encodes plus two posters, all generated from one master:
 | `hero-desktop.mp4` / `.webm` | 1920×1080, seamless 7s loop |
 | `hero-mobile.mp4` / `.webm` | 720×1280 centre crop of the same grade |
 | `hero-poster.jpg` / `-mobile.jpg` | first-paint frame per breakpoint |
-| `grade-before.jpg` / `grade-after.jpg` | the compare slider's matched pair |
+| `style-short.jpg` / `style-long.jpg` | the length chooser's two portraits |
 
 `gallery-*.jpg`: three properly-licensed stock photos (storefront, interior,
 stylist portrait).
+
+`style-short.jpg` / `style-long.jpg` are Pexels photos (Pexels License:
+commercial use, no attribution required, modification allowed), cropped to a
+matching 4:5 frame with the faces aligned and put through a gentler version of
+the hero grade so they sit in the same tonal world as the rest of the page.
+
+**They are two different models, and the UI says so.** Free stock libraries do
+not carry genuine same-person before/after haircut pairs — the "before and
+after haircut" tags on Pexels and Unsplash are keyword matches on unrelated
+photos. Dropping two strangers into a wipe slider labelled *voor* and *na*
+would depict a transformation that never happened, which is both a false claim
+in a client pitch and a breach of the Pexels License clause against implying
+endorsement by the people shown. So the component is framed as a *length
+comparison* ("Kort" / "Langer") with a caption stating it is not a single
+client's before-and-after. If a client supplies real, consented before/after
+photos of the same person, swap the two files and relabel — the component
+itself is agnostic.
 
 The ungraded 720p master lives in **`media-src/hero-loop-master.mp4`**, outside
 `public/` on purpose — nothing references it at runtime, so serving it would
