@@ -38,6 +38,13 @@ export function BusyMeter() {
   const isToday = today === selected;
 
   const start = slot.closed ? 0 : openingHour(slot.time);
+  // Outside opening hours there is no bar to point at, so the "now" marker
+  // would name an hour the chart does not show.
+  const nowOnChart =
+    isToday &&
+    nowHour !== null &&
+    nowHour >= start &&
+    nowHour < start + levels.length;
   const quietest = levels.length
     ? levels.reduce(
         (best, level, index) => (level < levels[best] ? index : best),
@@ -123,7 +130,7 @@ export function BusyMeter() {
             <span>{String(start + levels.length).padStart(2, "0")}:00</span>
           </div>
 
-          {isToday && nowHour !== null ? (
+          {nowOnChart ? (
             <p className="mt-4 font-sans text-xs text-ink/60">
               <span className="inline-block h-2 w-2 rounded-full bg-pole align-middle" />{" "}
               Nu, rond {String(nowHour).padStart(2, "0")}:00

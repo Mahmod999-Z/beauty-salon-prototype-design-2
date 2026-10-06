@@ -148,21 +148,27 @@ html.cursor-rig-on select {
   cursor: auto;
 }
 
+/* No box of its own: a full-viewport blended layer would force the compositor
+   to re-blend the whole screen on every pointer move and every scroll frame.
+   Blending happens on the two small marks instead. */
 .cursor-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  pointer-events: none;
-  mix-blend-mode: difference;
+  display: contents;
 }
 
 .cursor-dot,
 .cursor-ring {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  will-change: transform;
+  z-index: 80;
   pointer-events: none;
+  will-change: transform;
+  mix-blend-mode: difference;
+}
+
+.cursor-hidden .cursor-dot,
+.cursor-hidden .cursor-ring {
+  opacity: 0;
 }
 
 .cursor-dot {
@@ -773,11 +779,12 @@ html[data-shop="closed"] .pole-stripes {
   }
 }
 
+/* Opacity and transform only — animating `filter: blur()` here repainted the
+   whole copy block every scroll frame and was a measurable source of jank. */
 @keyframes hero-copy-out {
   to {
     opacity: 0;
     transform: translateY(-8%);
-    filter: blur(7px);
   }
 }
 

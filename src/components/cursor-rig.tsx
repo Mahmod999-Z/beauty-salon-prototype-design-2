@@ -60,10 +60,19 @@ export function CursorRig() {
     let snipStart = 0;
     let visible = false;
     let frame = 0;
+    let running = false;
+
+    // The loop parks itself once everything has settled; any input wakes it.
+    const wake = () => {
+      if (running) return;
+      running = true;
+      frame = requestAnimationFrame(tick);
+    };
 
     const onMove = (event: PointerEvent) => {
       pointerX = event.clientX;
       pointerY = event.clientY;
+      wake();
       if (!visible) {
         visible = true;
         dotX = ringX = pointerX;
@@ -81,6 +90,7 @@ export function CursorRig() {
       const holder = target.closest<HTMLElement>("[data-cursor]");
       const state = holder?.dataset.cursor ?? "default";
       targetScale = SCALE_BY_STATE[state] ?? 1;
+      wake();
       ring.classList.toggle("is-media", state === "media");
       ring.classList.toggle("is-price", state === "price");
       ring.classList.toggle("is-pole", state === "pole");
@@ -93,6 +103,7 @@ export function CursorRig() {
 
     const onDown = () => {
       snipStart = performance.now();
+      wake();
     };
 
     const tick = (now: number) => {
@@ -134,10 +145,20 @@ export function CursorRig() {
       bladeTop.style.transform = `rotate(${bladeAngle}deg)`;
       bladeBottom.style.transform = `rotate(${180 - bladeAngle}deg)`;
 
+      const settled =
+        Math.abs(pointerX - ringX) < 0.1 &&
+        Math.abs(pointerY - ringY) < 0.1 &&
+        Math.abs(targetScale - scale) < 0.002 &&
+        bladeAlpha === 0;
+
+      if (settled) {
+        running = false;
+        return;
+      }
+
       frame = requestAnimationFrame(tick);
     };
 
-    frame = requestAnimationFrame(tick);
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerover", onOver, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });

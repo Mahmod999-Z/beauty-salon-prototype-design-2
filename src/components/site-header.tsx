@@ -25,17 +25,27 @@ export function SiteHeader() {
       .map((link) => document.querySelector<HTMLElement>(link.href))
       .filter((el): el is HTMLElement => el !== null);
 
+    // Scroll-spy via IntersectionObserver. Measuring every section with
+    // getBoundingClientRect() on each scroll frame forced a synchronous layout
+    // per section, which is exactly the work that makes a scroll feel heavy.
+    const visible = new Set<string>();
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target.id);
+          else visible.delete(entry.target.id);
+        }
+        const current = sections.find((section) => visible.has(section.id));
+        setActiveHref(current ? `#${current.id}` : null);
+      },
+      { rootMargin: "-140px 0px -55% 0px" },
+    );
+    for (const section of sections) spy.observe(section);
+
+    // scrollY alone needs no layout, so this stays a cheap rAF-gated read.
     const update = () => {
       ticking.current = false;
       setScrolled(window.scrollY > window.innerHeight * 0.6);
-
-      let current: string | null = null;
-      for (const section of sections) {
-        if (section.getBoundingClientRect().top <= 140) {
-          current = `#${section.id}`;
-        }
-      }
-      setActiveHref(current);
     };
 
     const onScroll = () => {
@@ -47,14 +57,17 @@ export function SiteHeader() {
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      spy.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 text-paper backdrop-blur-sm transition-[padding,background] duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 text-paper transition-[padding,background] duration-300 ${
         scrolled
-          ? "bg-ink/80 py-2 backdrop-blur-xl"
+          ? "bg-ink/90 py-2 backdrop-blur-md"
           : "bg-gradient-to-b from-ink/55 via-ink/25 to-transparent py-3"
       }`}
     >

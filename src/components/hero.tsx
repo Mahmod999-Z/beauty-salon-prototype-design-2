@@ -48,7 +48,7 @@ export function Hero() {
             <a
               href="#diensten"
               data-cursor="link"
-              className="inline-flex min-h-13 items-center border border-paper/35 px-6 font-display text-base font-semibold tracking-tight text-paper backdrop-blur-sm transition-colors hover:border-paper hover:bg-paper/10 motion-safe:transition-[transform,border-color,background-color] motion-safe:hover:-translate-y-0.5"
+              className="inline-flex min-h-13 items-center border border-paper/35 px-6 font-display text-base font-semibold tracking-tight text-paper transition-colors hover:border-paper hover:bg-paper/10 motion-safe:transition-[transform,border-color,background-color] motion-safe:hover:-translate-y-0.5"
             >
               Prijzen bekijken
             </a>

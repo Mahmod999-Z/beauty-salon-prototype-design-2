@@ -4,7 +4,7 @@ export function CallBar() {
   const sunday = salon.hours.find((slot) => slot.sunday);
 
   return (
-    <div className="callbar-in fixed inset-x-0 bottom-0 z-40 border-t border-paper/15 bg-ink/85 px-4 py-3 backdrop-blur-xl sm:hidden">
+    <div className="callbar-in fixed inset-x-0 bottom-0 z-40 border-t border-paper/15 bg-ink/92 px-4 py-3 backdrop-blur-md sm:hidden">
       <div className="flex items-center justify-between gap-3">
         <p className="font-display text-xs leading-tight font-semibold text-paper">
           Zondag open
